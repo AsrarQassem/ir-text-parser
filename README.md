@@ -9,9 +9,9 @@ A Python-based **text parser** that serves as the foundational component of an I
 
 A complete Information Retrieval engine consists of three core components:
 
-1. **Text Parser** — *this project*
-2. **Indexer** — builds an inverted index from parsed terms
-3. **Retrieval System** — processes user queries and ranks matching documents
+1. **Text Parser** - *this project*
+2. **Indexer** - builds an inverted index from parsed terms
+3. **Retrieval System** - processes user queries and ranks matching documents
 
 This repository implements the **Text Parser**: the layer responsible for transforming raw, unstructured text into clean, normalized, ID-mapped tokens that the indexer and retrieval system can efficiently consume.
 
@@ -21,14 +21,14 @@ The parser is designed for the **TREC document format**, where each physical fil
 
 ## Key Features
 
-- **Multi-document file parsing** — uses regular expressions to split TREC files into individual documents based on `<DOC>` and `<DOCNO>` tags.
-- **Tag-aware tokenization** — strips out `<DOCNO>` and `<PROFILE>` metadata before tokenization to prevent tag pollution in the term dictionary.
-- **Strict tokenization rules** — splits on all non-alphanumeric characters, removes pure numeric tokens, discards any token containing digits, and lowercases all output.
-- **Custom stopword removal** — filters tokens against a curated list of 523 common English stopwords loaded from `stopwordlist.txt`.
-- **Porter stemming** — reduces inflected words to their root form using NLTK's `PorterStemmer` (e.g., *running, runs, ran* → *run*), increasing recall for downstream retrieval.
+- **Multi-document file parsing** - uses regular expressions to split TREC files into individual documents based on `<DOC>` and `<DOCNO>` tags.
+- **Tag-aware tokenization** - strips out `<DOCNO>` and `<PROFILE>` metadata before tokenization to prevent tag pollution in the term dictionary.
+- **Strict tokenization rules** - splits on all non-alphanumeric characters, removes pure numeric tokens, discards any token containing digits, and lowercases all output.
+- **Custom stopword removal** - filters tokens against a curated list of 523 common English stopwords loaded from `stopwordlist.txt`.
+- **Porter stemming** - reduces inflected words to their root form using NLTK's `PorterStemmer` (e.g., *running, runs, ran* → *run*), increasing recall for downstream retrieval.
 - **Dual dictionary output:**
-  - **Term Dictionary** — maps each unique stemmed token to a unique numeric ID.
-  - **Document Dictionary** — maps each TREC document name (e.g., `FT911-1`) to a unique numeric ID.
+  - **Term Dictionary** - maps each unique stemmed token to a unique numeric ID.
+  - **Document Dictionary** - maps each TREC document name (e.g., `FT911-1`) to a unique numeric ID.
 - **Alphabetically sorted output** — terms are sorted A–Z in the final output for easy inspection and verification.
 
 ---
@@ -49,15 +49,15 @@ The parser is designed for the **TREC document format**, where each physical fil
 
 The parser executes the following preprocessing pipeline for each TREC file:
 
-1. **File Ingestion** — reads each TREC file from the `ft911/` directory into memory.
-2. **Document Segmentation** — extracts individual documents using `<DOC>...</DOC>` tag pairs.
-3. **Document ID Extraction** — pulls each document's unique identifier from the `<DOCNO>` tag.
-4. **Metadata Cleaning** — strips `<DOCNO>` and `<PROFILE>` content from the body so tag values don't end up in the term dictionary.
-5. **Tokenization** — splits text on non-alphanumeric boundaries, lowercases all tokens, and discards any token containing non-alphabetic characters.
-6. **Stopword Elimination** — filters tokens against the 523-word stopword set.
-7. **Stemming** — applies the Porter algorithm to each surviving token.
-8. **Dictionary Construction** — assigns unique sequential numeric IDs to new terms and documents.
-9. **Sorting & Output** — alphabetizes the term dictionary and writes both dictionaries to `parser_output.txt`.
+1. **File Ingestion** - reads each TREC file from the `ft911/` directory into memory.
+2. **Document Segmentation** - extracts individual documents using `<DOC>...</DOC>` tag pairs.
+3. **Document ID Extraction** - pulls each document's unique identifier from the `<DOCNO>` tag.
+4. **Metadata Cleaning** - strips `<DOCNO>` and `<PROFILE>` content from the body so tag values don't end up in the term dictionary.
+5. **Tokenization** - splits text on non-alphanumeric boundaries, lowercases all tokens, and discards any token containing non-alphabetic characters.
+6. **Stopword Elimination** - filters tokens against the 523-word stopword set.
+7. **Stemming** - applies the Porter algorithm to each surviving token.
+8. **Dictionary Construction** - assigns unique sequential numeric IDs to new terms and documents.
+9. **Sorting & Output** - alphabetizes the term dictionary and writes both dictionaries to `parser_output.txt`.
 
 ---
 
@@ -112,8 +112,8 @@ Each line follows the format:  `token<TAB><TAB>token_id`
 
 This parser is **Phase 1** of a larger IR engine. Future phases will build on this foundation:
 
-- **Phase 2 — Indexer:** Construct an inverted index from the parsed tokens to enable fast term-to-document lookup.
-- **Phase 3 — Retrieval System:** Implement query processing and ranked retrieval (e.g., TF-IDF, BM25) over the indexed corpus.
+- **Phase 2 - Indexer:** Construct an inverted index from the parsed tokens to enable fast term-to-document lookup.
+- **Phase 3 - Retrieval System:** Implement query processing and ranked retrieval (e.g., TF-IDF, BM25) over the indexed corpus.
 
 ---
 
