@@ -46,23 +46,6 @@ The parser is designed for the **TREC document format**, where each physical fil
 
 ---
 
-## Project Structure
-
-```
-ir-text-parser/
-│
-├── Project_IR_Part1.ipynb     # Main Jupyter notebook with full pipeline
-├── stopwordlist.txt           # Custom stopword list (523 words)
-├── parser_output.txt          # Generated output (term + document dictionaries)
-├── ft911/                     # Input TREC document collection
-│   ├── ft911_1
-│   ├── ft911_2
-│   └── ... (ft911_3 through ft911_15)
-└── README.md
-```
-
----
-
 ## Pipeline
 
 The parser executes the following preprocessing pipeline for each TREC file:
