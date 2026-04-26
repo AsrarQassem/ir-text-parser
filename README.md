@@ -2,8 +2,7 @@
 
 A Python-based **text parser** that serves as the foundational component of an Information Retrieval (IR) engine. The parser ingests TREC-formatted document collections, performs full linguistic preprocessing — tokenization, stopword elimination, and Porter stemming — and outputs structured term and document dictionaries ready for downstream indexing.
 
-> Built as **Phase 1** of a multi-stage IR engine project for **CSCE 5200 — Information Retrieval and Web Search**.
-
+> **Phase 1** of a multi-stage IR engine project — built during graduate coursework in Information Retrieval & Web Search.
 ---
 
 ## Overview
